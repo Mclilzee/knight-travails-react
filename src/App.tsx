@@ -32,4 +32,15 @@ function App() {
   )
 }
 
+class Point implements Hashable<Point> {
+  equals(other: Point): boolean {
+    return true;
+  }
+
+  hash(): number {
+    return 5;
+  }
+
+}
+
 export default App
