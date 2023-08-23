@@ -1,6 +1,6 @@
-import { HashSet } from "./utils/HashSet";
+import { Hashable } from "./utils/interfaces/Hashable";
 
-export class Position implements HashSet<Position> {
+export default class Position implements Hashable<Position> {
   readonly x: number;
   readonly y: number;
 
@@ -10,10 +10,10 @@ export class Position implements HashSet<Position> {
   }
 
   hash(): number {
-    return 5;
+    return Math.abs(this.x * 2 + this.y * 3);
   }
 
-  equals(other: Position) {
-    return false;
+  equals(other: Position): boolean {
+    return other.y === this.y && other.x === this.x;
   }
 }
