@@ -1,4 +1,4 @@
-import Hashable from "./interfaces/Hashable";
+import { Hashable } from "./interfaces";
 
 export default class HashSet<T extends Hashable<T>> {
   private map: Map<number, T[]>;

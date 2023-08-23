@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 import HashSet from "../../main/utils/HashSet";
-import Hashable from "../../main/utils/interfaces/Hashable";
+import { Hashable } from "../../main/utils/interfaces";
 
 describe("Add elements to the set", () => {
   test("Adds element to the set", () => {
