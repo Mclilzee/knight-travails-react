@@ -1,21 +1,22 @@
 import { Hashable } from "./interfaces/Hashable";
 
 export class HashSet<T extends Hashable<T>> {
-  private array: T[][];
+  private map: Map<number, T[]>;
   private size: number;
 
   constructor() {
-    this.array = [];
-    console.log(this.array);
+    this.map = new Map();
     this.size = 0;
   }
 
   add(element: T): void {
-    if (this.array[0] === undefined) {
-      this.array[0] = [];
+    const key = element.hash();
+    if (!this.map.has(key)) {
+      this.map.set(key, []);
     }
+    const array = this.map.get(key);
 
-    this.array[0].push(element);
+    array?.push(element);
     this.size++;
   }
 
