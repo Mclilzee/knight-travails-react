@@ -1,5 +1,5 @@
 import { test, expect, describe } from "vitest";
-import { Position } from "../main/Position";
+import Position from "../main/Position";
 
 describe("Position constructed correctly", () => {
   test("x and y are set correctly", () => {

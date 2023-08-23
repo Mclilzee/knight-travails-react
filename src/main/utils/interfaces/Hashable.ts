@@ -1,4 +1,4 @@
-export interface Hashable<T> {
+export default interface Hashable<T> {
   equals: (other: T) => boolean;
   hash: () => number;
 }

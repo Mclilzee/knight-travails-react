@@ -1,4 +1,4 @@
-import { Hashable } from "./utils/interfaces/Hashable";
+import Hashable from "./utils/interfaces/Hashable";
 
 export default class Position implements Hashable<Position> {
   readonly x: number;
