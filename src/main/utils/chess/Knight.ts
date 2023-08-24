@@ -8,5 +8,5 @@ export default class Knight {
 
 type AllowedPositions = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
-export type Cord = [number, number];
+export type Cord = [AllowedPositions, AllowedPositions];
 
