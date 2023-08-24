@@ -25,4 +25,14 @@ describe("Position constructed correctly", () => {
     expect(() => new Knight(8, 8)).toThrow();
     expect(() => new Knight(9, 1)).toThrow();
   });
+
+  test("x and y cannot be negative", () => {
+    expect(() => new Knight(-1, 5)).toThrow();
+    expect(() => new Knight(-5, 0)).toThrow();
+    expect(() => new Knight(-8, 2)).toThrow();
+    expect(() => new Knight(-20, 4)).toThrow();
+    expect(() => new Knight(5, -10)).toThrow();
+    expect(() => new Knight(0, -1)).toThrow();
+    expect(() => new Knight(2, -2)).toThrow();
+  });
 });

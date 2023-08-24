@@ -3,8 +3,8 @@ export default class Knight {
   y: number;
 
   constructor(x: number, y: number) {
-    if (x > 7 || y > 7) {
-      throw Error("ChessPiece cords cannot excceed board size");
+    if (x > 7 || x < 0 || y > 7 || y < 0) {
+      throw Error("ChessPiece cords cannot excceed board size or be negative");
     }
 
     this.x = x;
