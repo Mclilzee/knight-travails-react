@@ -1,10 +1,10 @@
 import { describe, expect, test } from "vitest";
-import ChessPosition from "../../../main/utils/ChessPosition";
+import Knight from "../../../main/utils/chess/Knight";
 import ChessNode from "../../../main/utils/search/ChessNode";
 
 describe("Construction", () => {
   test("Contains no parrent when parrent not given", () => {
-    const position = new ChessPosition(0, 1);
+    const position = new Knight(0, 1);
     const node = new ChessNode(position);
 
     expect(node.position).toBe(position);
@@ -12,10 +12,10 @@ describe("Construction", () => {
   });
 
   test("Contains correct parrent when given", () => {
-    const parentPosition = new ChessPosition(5, 0);
+    const parentPosition = new Knight(5, 0);
     const parent = new ChessNode(parentPosition);
 
-    const position = new ChessPosition(5, 5);
+    const position = new Knight(5, 5);
     const node = new ChessNode(position, parent);
 
     expect(node.position).toBe(position);
@@ -28,14 +28,14 @@ describe("Getting adjacent moves", () => {
 
   function createPositions(parent: ChessNode, cords: Cord[]): ChessNode[] {
     return cords.map(cord => {
-      const position = new ChessPosition(cord[0], cord[1]);
+      const position = new Knight(cord[0], cord[1]);
       return new ChessNode(position, parent);
     });
   }
 
 
   test("Get correct knight moves", () => {
-    const position = new ChessPosition(4, 3);
+    const position = new Knight(4, 3);
     const node = new ChessNode(position);
 
     const cords: Cord[] = [
