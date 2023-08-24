@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import Knight from "../../main/utils/chess/Knight";
+import Knight from "../../../main/utils/chess/Knight";
 
 describe("Position constructed correctly", () => {
   test("x and y are set correctly", () => {
