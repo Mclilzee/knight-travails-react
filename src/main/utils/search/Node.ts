@@ -14,12 +14,12 @@ export default class Node implements Hashable<Node> {
   }
 
   hash(): number {
-    return this.knight.position[0] * 2 + this.knight.position[1] * 3;
+    return this.knight.x * 2 + this.knight.y * 3;
   }
 
   equals(other: Node): boolean {
-    return other.knight.position[0] === this.knight.position[0] &&
-      other.knight.position[1] === this.knight.position[1];
+    return other.knight.x === this.knight.x &&
+      other.knight.y === this.knight.y;
   }
 
   getMoves(): Knight[] {

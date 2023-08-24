@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import Knight, { Cord } from "../../../main/utils/chess/Knight";
+import Knight from "../../../main/utils/chess/Knight";
 import Node from "../../../main/utils/search/Node";
 
 describe("Construction", () => {
@@ -24,7 +24,7 @@ describe("Construction", () => {
 });
 
 describe.skip("Getting adjacent moves", () => {
-  function createPositions(parent: Node, cords: Cord[]): Node[] {
+  function createPositions(parent: Node, cords: number[][]): Node[] {
     return cords.map(cord => {
       const knight = new Knight(cord[0], cord[1]);
       return new Node(knight, parent);
@@ -36,7 +36,7 @@ describe.skip("Getting adjacent moves", () => {
     const knight = new Knight(4, 3);
     const node = new Node(knight);
 
-    const cords: Cord[] = [
+    const cords: number[][] = [
       [2, 2],
       [3, 1],
       [5, 1],

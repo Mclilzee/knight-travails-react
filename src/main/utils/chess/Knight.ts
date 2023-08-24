@@ -1,12 +1,9 @@
 export default class Knight {
-  position: Cord;
+  x: number;
+  y: number;
 
-  constructor(row: AllowedPositions, column: AllowedPositions) {
-    this.position = [row, column];
+  constructor(x: number, y: number) {
+    this.x = x;
+    this.y = y;
   }
 }
-
-type AllowedPositions = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
-
-export type Cord = [AllowedPositions, AllowedPositions];
-
