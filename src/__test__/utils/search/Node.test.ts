@@ -55,8 +55,8 @@ describe.skip("Getting adjacent moves", () => {
 
 describe("Position hash value", () => {
   test("Returns hash value that is equal for same Position cords", () => {
-    let node = new Node(new Knight(5, 10));
-    let node2 = new Node(new Knight(5, 10));
+    let node = new Node(new Knight(5, 7));
+    let node2 = new Node(new Knight(5, 7));
 
     expect(node.hash()).toBe(node2.hash());
 
@@ -68,14 +68,14 @@ describe("Position hash value", () => {
     node2 = new Node(new Knight(1, 2));
     expect(node.hash()).toBe(node2.hash());
 
-    node = new Node(new Knight(20, -5));
-    node2 = new Node(new Knight(20, -5));
+    node = new Node(new Knight(3, 4));
+    node2 = new Node(new Knight(3, 4));
     expect(node.hash()).toBe(node2.hash());
   });
 
   test("Hash value is differnt for different position cords", () => {
-    let node = new Node(new Knight(5, 10));
-    let node2 = new Node(new Knight(2, 10));
+    let node = new Node(new Knight(5, 6));
+    let node2 = new Node(new Knight(2, 6));
     expect(node.hash()).not.toBe(node2.hash());
 
     node = new Node(new Knight(0, 0));
@@ -86,16 +86,16 @@ describe("Position hash value", () => {
     node2 = new Node(new Knight(1, 5));
     expect(node.hash()).not.toBe(node2.hash());
 
-    node = new Node(new Knight(20, -5));
-    node2 = new Node(new Knight(2, -5));
+    node = new Node(new Knight(6, 5));
+    node2 = new Node(new Knight(2, 5));
     expect(node.hash()).not.toBe(node2.hash());
 
     node = new Node(new Knight(2, 1));
     node2 = new Node(new Knight(1, 2));
     expect(node.hash()).not.toBe(node2.hash());
 
-    node = new Node(new Knight(10, 20));
-    node2 = new Node(new Knight(20, 10));
+    node = new Node(new Knight(7, 0));
+    node2 = new Node(new Knight(0, 7));
     expect(node.hash()).not.toBe(node2.hash());
   });
 });
