@@ -1,9 +1,9 @@
 import { PathFinder } from "../interfaces";
-import SearchNode from "./SearchNode";
+import ChessNode from "./ChessNode";
 
-export default class BreadthFirstSearch implements PathFinder {
+export default class BreadthFirstSearch implements PathFinder<ChessNode> {
 
-  findPath(startNode: SearchNode, goalNode: SearchNode): SearchNode[] {
+  findPath(startNode: ChessNode, goalNode: ChessNode): ChessNode[] {
     return [];
   }
 }
