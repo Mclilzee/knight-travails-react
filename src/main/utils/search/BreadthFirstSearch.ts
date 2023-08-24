@@ -3,7 +3,7 @@ import ChessNode from "./ChessNode";
 
 export default class BreadthFirstSearch implements PathFinder<ChessNode> {
 
-  findPath(startNode: ChessNode, goalNode: ChessNode): ChessNode[] {
+  findPath(start: ChessNode, goal: ChessNode): ChessNode[] {
     return [];
   }
 }

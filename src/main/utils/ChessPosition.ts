@@ -1,6 +1,6 @@
 import { Hashable } from "./interfaces";
 
-export default class Position implements Hashable<Position> {
+export default class ChessPosition implements Hashable<ChessPosition> {
   readonly x: number;
   readonly y: number;
 
@@ -13,7 +13,7 @@ export default class Position implements Hashable<Position> {
     return Math.abs(this.x * 2 + this.y * 3);
   }
 
-  equals(other: Position): boolean {
+  equals(other: ChessPosition): boolean {
     return other.y === this.y && other.x === this.x;
   }
 }
