@@ -4,12 +4,16 @@ import Hashable from "../Hashable";
 export default class Node implements Hashable<Node> {
   readonly chessSquare: ChessSquare;
   readonly parent: Node | null = null;
+  readonly length: number;
 
   constructor(chessSquare: ChessSquare, parent?: Node) {
     this.chessSquare = chessSquare;
 
     if (parent !== undefined) {
       this.parent = parent;
+      this.length = parent.length + 1;
+    } else {
+      this.length = 1;
     }
   }
 

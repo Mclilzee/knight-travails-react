@@ -172,3 +172,27 @@ describe("Node equality", () => {
     expect(node.equals(otherNode)).toBe(true);
   });
 });
+
+describe("Test length of each node", () => {
+  test("Each node starts with length of 1", () => {
+    const square = new ChessSquare(0, 0);
+    const node = new Node(square);
+
+    expect(node.length).toBe(1);
+  })
+
+  test("Each node takes length from it's parrent", () => {
+    const square = new ChessSquare(0, 0);
+    const node = new Node(square);
+    const node2 = new Node(square, node);
+    const node3 = new Node(square, node2);
+    const node4 = new Node(square, node3);
+    const node5 = new Node(square, node4);
+
+    expect(node.length).toBe(1);
+    expect(node2.length).toBe(2);
+    expect(node3.length).toBe(3);
+    expect(node4.length).toBe(4);
+    expect(node5.length).toBe(5);
+  })
+});
