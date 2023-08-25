@@ -130,3 +130,45 @@ describe("Position equality", () => {
     expect(node.equals(node2)).toBe(true);
   });
 });
+
+describe("Node equality", () => {
+  test("Same node is equal", () => {
+    const chessSquare = new ChessSquare(0, 0);
+    const node = new Node(chessSquare);
+    const other = node;
+
+    expect(node.equals(other)).toBe(true);
+  });
+
+  test("Nodes are equal if they have same values", () => {
+    let chessSquare = new ChessSquare(0, 0);
+    let node = new Node(chessSquare);
+    let otherSquare = new ChessSquare(0, 0);
+    let otherNode = new Node(otherSquare);
+    expect(node.equals(otherNode)).toBe(true);
+
+    chessSquare = new ChessSquare(2, 1);
+    node = new Node(chessSquare);
+    otherSquare = new ChessSquare(2, 1);
+    otherNode = new Node(otherSquare);
+    expect(node.equals(otherNode)).toBe(true);
+
+    chessSquare = new ChessSquare(3, 2);
+    node = new Node(chessSquare);
+    otherSquare = new ChessSquare(3, 2);
+    otherNode = new Node(otherSquare);
+    expect(node.equals(otherNode)).toBe(true);
+
+    chessSquare = new ChessSquare(5, 5);
+    node = new Node(chessSquare);
+    otherSquare = new ChessSquare(5, 5);
+    otherNode = new Node(otherSquare);
+    expect(node.equals(otherNode)).toBe(true);
+
+    chessSquare = new ChessSquare(7, 7);
+    node = new Node(chessSquare);
+    otherSquare = new ChessSquare(7, 7);
+    otherNode = new Node(otherSquare);
+    expect(node.equals(otherNode)).toBe(true);
+  });
+});

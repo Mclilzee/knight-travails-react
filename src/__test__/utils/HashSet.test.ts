@@ -17,6 +17,8 @@ describe("Add elements to the set", () => {
     const set: HashSet<MockHashable> = new HashSet();
     const mockObject = new MockHashable(0);
     const mockObject2 = new MockHashable(1);
+    const mockObject3 = new MockHashable(1);
+    const mockObject4 = new MockHashable(2);
 
     expect(set.length()).toBe(0);
 
@@ -25,6 +27,12 @@ describe("Add elements to the set", () => {
 
     set.add(mockObject2)
     expect(set.length()).toBe(2);
+
+    set.add(mockObject3)
+    expect(set.length()).toBe(3);
+
+    set.add(mockObject4)
+    expect(set.length()).toBe(4);
   });
 
   test("Does not add if element already exist", () => {
