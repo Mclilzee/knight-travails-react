@@ -16,7 +16,7 @@ export default class PathFinder {
       visited.add(node);
 
       if (node.equals(goalNode)) {
-        return this.buildSquaresArray(node).reverse();
+        return this.buildSquaresArray(node);
       }
 
       node.getMoves()
@@ -67,6 +67,6 @@ export default class PathFinder {
       parent = parent.parent;
     }
 
-    return squares;
+    return squares.reverse();
   }
 }

@@ -96,4 +96,16 @@ describe("Visit all squares on the board", () => {
     const start = new ChessSquare(0, 0);
     expect(finder.visitAllSquares(start).length).toBe(64);
   });
+
+  test("Visit all from different starting position", () => {
+    const start = new ChessSquare(4, 4);
+    expect(finder.visitAllSquares(start).length).toBe(64);
+  });
+
+  test("First node is the starting position", () => {
+    const start = new ChessSquare(2, 6);
+    const result = finder.visitAllSquares(start);
+    expect(result.length).toBe(64);
+    expect(result[0]).toEqual(start);
+  });
 });
