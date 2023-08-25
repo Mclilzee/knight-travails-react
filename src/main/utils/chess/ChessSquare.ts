@@ -1,4 +1,4 @@
-export default class Knight {
+export default class ChessSquare {
   x: number;
   y: number;
 

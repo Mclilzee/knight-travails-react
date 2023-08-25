@@ -1,24 +1,24 @@
 import { describe, expect, test } from "vitest";
-import Knight from "../../../main/utils/chess/Knight";
+import ChessSquare from "../../../main/utils/chess/ChessSquare";
 import Node from "../../../main/utils/search/Node";
 
 describe("Construction", () => {
   test("Contains no parrent when parrent not given", () => {
-    const knight: Knight = new Knight(0, 1);
-    const node = new Node(knight);
+    const square: ChessSquare = new ChessSquare(0, 1);
+    const node = new Node(square);
 
-    expect(node.knight).toBe(knight);
+    expect(node.chessSquare).toBe(square);
     expect(node.parent).toBeNull();
   });
 
   test("Contains correct parrent when given", () => {
-    const parentKnight: Knight = new Knight(5, 0);
-    const parent = new Node(parentKnight);
+    const parentSquare: ChessSquare = new ChessSquare(5, 0);
+    const parent = new Node(parentSquare);
 
-    const knight: Knight = new Knight(5, 5);
-    const node = new Node(knight, parent);
+    const square: ChessSquare = new ChessSquare(5, 5);
+    const node = new Node(square, parent);
 
-    expect(node.knight).toBe(knight);
+    expect(node.chessSquare).toBe(square);
     expect(node.parent).toBe(parent);
   });
 });
@@ -26,15 +26,15 @@ describe("Construction", () => {
 describe.skip("Getting adjacent moves", () => {
   function createPositions(parent: Node, cords: number[][]): Node[] {
     return cords.map(cord => {
-      const knight = new Knight(cord[0], cord[1]);
-      return new Node(knight, parent);
+      const square = new ChessSquare(cord[0], cord[1]);
+      return new Node(square, parent);
     });
   }
 
 
   test("Destination uses proper component destination", () => {
-    const knight = new Knight(4, 3);
-    const node = new Node(knight);
+    const square = new ChessSquare(4, 3);
+    const node = new Node(square);
 
     const cords: number[][] = [
       [2, 2],
@@ -55,82 +55,82 @@ describe.skip("Getting adjacent moves", () => {
 
 describe("Position hash value", () => {
   test("Returns hash value that is equal for same Position cords", () => {
-    let node = new Node(new Knight(5, 7));
-    let node2 = new Node(new Knight(5, 7));
+    let node = new Node(new ChessSquare(5, 7));
+    let node2 = new Node(new ChessSquare(5, 7));
 
     expect(node.hash()).toBe(node2.hash());
 
-    node = new Node(new Knight(0, 0));
-    node2 = new Node(new Knight(0, 0));
+    node = new Node(new ChessSquare(0, 0));
+    node2 = new Node(new ChessSquare(0, 0));
     expect(node.hash()).toBe(node2.hash());
 
-    node = new Node(new Knight(1, 2));
-    node2 = new Node(new Knight(1, 2));
+    node = new Node(new ChessSquare(1, 2));
+    node2 = new Node(new ChessSquare(1, 2));
     expect(node.hash()).toBe(node2.hash());
 
-    node = new Node(new Knight(3, 4));
-    node2 = new Node(new Knight(3, 4));
+    node = new Node(new ChessSquare(3, 4));
+    node2 = new Node(new ChessSquare(3, 4));
     expect(node.hash()).toBe(node2.hash());
   });
 
   test("Hash value is differnt for different position cords", () => {
-    let node = new Node(new Knight(5, 6));
-    let node2 = new Node(new Knight(2, 6));
+    let node = new Node(new ChessSquare(5, 6));
+    let node2 = new Node(new ChessSquare(2, 6));
     expect(node.hash()).not.toBe(node2.hash());
 
-    node = new Node(new Knight(0, 0));
-    node2 = new Node(new Knight(0, 1));
+    node = new Node(new ChessSquare(0, 0));
+    node2 = new Node(new ChessSquare(0, 1));
     expect(node.hash()).not.toBe(node2.hash());
 
-    node = new Node(new Knight(1, 2));
-    node2 = new Node(new Knight(1, 5));
+    node = new Node(new ChessSquare(1, 2));
+    node2 = new Node(new ChessSquare(1, 5));
     expect(node.hash()).not.toBe(node2.hash());
 
-    node = new Node(new Knight(6, 5));
-    node2 = new Node(new Knight(2, 5));
+    node = new Node(new ChessSquare(6, 5));
+    node2 = new Node(new ChessSquare(2, 5));
     expect(node.hash()).not.toBe(node2.hash());
 
-    node = new Node(new Knight(2, 1));
-    node2 = new Node(new Knight(1, 2));
+    node = new Node(new ChessSquare(2, 1));
+    node2 = new Node(new ChessSquare(1, 2));
     expect(node.hash()).not.toBe(node2.hash());
 
-    node = new Node(new Knight(7, 0));
-    node2 = new Node(new Knight(0, 7));
+    node = new Node(new ChessSquare(7, 0));
+    node2 = new Node(new ChessSquare(0, 7));
     expect(node.hash()).not.toBe(node2.hash());
   });
 });
 
 describe("Position equality", () => {
   test("Same objects are equal", () => {
-    const node = new Node(new Knight(0, 0));
+    const node = new Node(new ChessSquare(0, 0));
     expect(node.equals(node)).toBe(true);
   });
 
   test("Different object cords are not equal", () => {
-    let node = new Node(new Knight(0, 0));
-    let node2 = new Node(new Knight(0, 1));
+    let node = new Node(new ChessSquare(0, 0));
+    let node2 = new Node(new ChessSquare(0, 1));
     expect(node.equals(node2)).toBe(false);
 
-    node = new Node(new Knight(1, 0));
-    node2 = new Node(new Knight(0, 0));
+    node = new Node(new ChessSquare(1, 0));
+    node2 = new Node(new ChessSquare(0, 0));
     expect(node.equals(node2)).toBe(false);
 
-    node = new Node(new Knight(1, 0));
-    node2 = new Node(new Knight(0, 1));
+    node = new Node(new ChessSquare(1, 0));
+    node2 = new Node(new ChessSquare(0, 1));
     expect(node.equals(node2)).toBe(false);
   });
 
   test("Different object with same cords are equal", () => {
-    let node = new Node(new Knight(0, 0));
-    let node2 = new Node(new Knight(0, 0));
+    let node = new Node(new ChessSquare(0, 0));
+    let node2 = new Node(new ChessSquare(0, 0));
     expect(node.equals(node2)).toBe(true);
 
-    node = new Node(new Knight(0, 1));
-    node2 = new Node(new Knight(0, 1));
+    node = new Node(new ChessSquare(0, 1));
+    node2 = new Node(new ChessSquare(0, 1));
     expect(node.equals(node2)).toBe(true);
 
-    node = new Node(new Knight(1, 0));
-    node2 = new Node(new Knight(1, 0));
+    node = new Node(new ChessSquare(1, 0));
+    node2 = new Node(new ChessSquare(1, 0));
     expect(node.equals(node2)).toBe(true);
   });
 });

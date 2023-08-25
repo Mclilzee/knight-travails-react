@@ -1,12 +1,12 @@
-import Knight from "../chess/Knight";
+import ChessSquare from "../chess/ChessSquare";
 import { Hashable } from "../interfaces";
 
 export default class Node implements Hashable<Node> {
-  readonly knight: Knight;
+  readonly chessSquare: ChessSquare;
   readonly parent: Node | null = null;
 
-  constructor(position: Knight, parent?: Node) {
-    this.knight = position;
+  constructor(chessSquare: ChessSquare, parent?: Node) {
+    this.chessSquare = chessSquare;
 
     if (parent !== undefined) {
       this.parent = parent;
@@ -14,15 +14,15 @@ export default class Node implements Hashable<Node> {
   }
 
   hash(): number {
-    return this.knight.x * 2 + this.knight.y * 3;
+    return this.chessSquare.x * 2 + this.chessSquare.y * 3;
   }
 
   equals(other: Node): boolean {
-    return other.knight.x === this.knight.x &&
-      other.knight.y === this.knight.y;
+    return other.chessSquare.x === this.chessSquare.x &&
+      other.chessSquare.y === this.chessSquare.y;
   }
 
-  getMoves(): Knight[] {
+  getMoves(): ChessSquare[] {
     return [];
   }
 }
