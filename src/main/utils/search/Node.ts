@@ -22,7 +22,8 @@ export default class Node implements Hashable<Node> {
       other.chessSquare.y === this.chessSquare.y;
   }
 
-  getMoves(): ChessSquare[] {
-    return [];
+  getMoves(): Node[] {
+    return this.chessSquare.getKnightMoves()
+      .map((square) => new Node(square, this));
   }
 }

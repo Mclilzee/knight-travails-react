@@ -23,20 +23,12 @@ describe("Construction", () => {
   });
 });
 
-describe.skip("Getting adjacent moves", () => {
-  function createPositions(parent: Node, cords: number[][]): Node[] {
-    return cords.map(cord => {
-      const square = new ChessSquare(cord[0], cord[1]);
-      return new Node(square, parent);
-    });
-  }
-
-
-  test("Destination uses proper component destination", () => {
+describe("Getting adjacent moves", () => {
+  test("Moves uses knight moves to produce nodes", () => {
     const square = new ChessSquare(4, 3);
     const node = new Node(square);
 
-    const cords: number[][] = [
+    const expected: Node[] = [
       [2, 2],
       [3, 1],
       [5, 1],
@@ -45,11 +37,15 @@ describe.skip("Getting adjacent moves", () => {
       [2, 4],
       [3, 5],
       [5, 5]
-    ];
+    ].map(cord => {
+      const square = new ChessSquare(cord[0], cord[1]);
+      return new Node(square, node);
+    });
 
-    const expected = createPositions(node, cords);
     const actual = node.getMoves();
     expect(expected).toEqual(actual);
+
+    actual.forEach(e => expect(e.parent).toBe(node));
   });
 });
 
