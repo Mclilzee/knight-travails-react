@@ -10,4 +10,30 @@ export default class ChessSquare {
     this.x = x;
     this.y = y;
   }
+
+  getKnightMoves(): ChessSquare[] {
+    const moves = [
+      [this.x - 2, this.y - 1],
+      [this.x - 1, this.y - 2],
+      [this.x + 1, this.y - 2],
+      [this.x + 2, this.y - 1],
+      [this.x + 2, this.y + 1],
+      [this.x - 2, this.y + 1],
+      [this.x - 1, this.y + 2],
+      [this.x + 1, this.y + 2]
+    ]
+
+    const legalMoves: ChessSquare[] = [];
+
+    for (let i = 0; i < moves.length; i++) {
+      const move = moves[i];
+      if (move[0] > 7 || move[0] < 0 || move[1] > 7 || move[1] < 0) {
+        continue;
+      }
+
+      legalMoves.push(new ChessSquare(move[0], move[1]));
+    }
+
+    return legalMoves;
+  }
 }
