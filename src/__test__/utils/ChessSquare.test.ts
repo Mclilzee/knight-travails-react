@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import ChessSquare from "../../../main/utils/chess/ChessSquare";
+import ChessSquare from "../../main/utils/ChessSquare";
 
 describe("Position constructed correctly", () => {
   test("x and y are set correctly", () => {
