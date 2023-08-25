@@ -1,11 +1,10 @@
 import ChessSquare from "../ChessSquare";
 import HashSet from "../HashSet";
-import { PathFinder } from "../interfaces";
 import Node from "./Node";
 
-export default class BreadthFirstSearch implements PathFinder<ChessSquare> {
+export default class PathFinder {
 
-  findPath(start: ChessSquare, goal: ChessSquare): ChessSquare[] {
+  findShortestPath(start: ChessSquare, goal: ChessSquare): ChessSquare[] {
     const visited: HashSet<Node> = new HashSet();
     const startNode = new Node(start);
     const goalNode = new Node(goal);
@@ -13,8 +12,8 @@ export default class BreadthFirstSearch implements PathFinder<ChessSquare> {
 
     while (queue.length > 0) {
       const node = queue[0];
-      visited.add(node);
       queue.splice(0, 1);
+      visited.add(node);
 
       if (node.equals(goalNode)) {
         return this.buildSquaresArray(node);

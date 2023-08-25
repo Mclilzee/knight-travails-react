@@ -1,5 +1,5 @@
 import ChessSquare from "../ChessSquare";
-import { Hashable } from "../interfaces";
+import Hashable from "../Hashable";
 
 export default class Node implements Hashable<Node> {
   readonly chessSquare: ChessSquare;
