@@ -36,6 +36,57 @@ describe("Returns correct path", () => {
     ].map((cord) => new ChessSquare(cord[0], cord[1]));
 
     const actual: ChessSquare[] = search.findPath(start, goal);
+    expect(actual.length).toBe(3);
+    expect(actual).toEqual(expected);
+  });
+
+  test("Returns path with multiple steps 2", () => {
+    const start = new ChessSquare(4, 4);
+    const goal = new ChessSquare(1, 7);
+
+    const expected: ChessSquare[] = [
+      [4, 4],
+      [2, 5],
+      [1, 7]
+    ].map((cord) => new ChessSquare(cord[0], cord[1]));
+
+    const actual: ChessSquare[] = search.findPath(start, goal);
+    expect(actual.length).toBe(3);
+    expect(actual).toEqual(expected);
+  });
+
+  test("Go backward to find a node that is closer", () => {
+    const start = new ChessSquare(0, 0);
+    const goal = new ChessSquare(0, 1);
+
+    const expected: ChessSquare[] = [
+      [0, 0],
+      [2, 1],
+      [1, 3],
+      [0, 1]
+    ].map((cord) => new ChessSquare(cord[0], cord[1]));
+
+    const actual: ChessSquare[] = search.findPath(start, goal);
+    expect(actual.length).toBe(4);
+    expect(actual).toEqual(expected);
+  });
+
+  test("Finds far away node", () => {
+    const start = new ChessSquare(0, 0);
+    const goal = new ChessSquare(7, 7);
+
+    const expected: ChessSquare[] = [
+      [0, 0],
+      [2, 1],
+      [4, 0],
+      [6, 1],
+      [5, 3],
+      [6, 5],
+      [7, 7]
+    ].map((cord) => new ChessSquare(cord[0], cord[1]));
+    const actual: ChessSquare[] = search.findPath(start, goal);
+
+    expect(actual.length).toBe(7);
     expect(actual).toEqual(expected);
   });
 });
