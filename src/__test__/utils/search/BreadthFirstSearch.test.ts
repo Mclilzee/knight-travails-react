@@ -6,7 +6,7 @@ import BreadthFirstSearch from "../../../main/utils/search/BreadthFirstSearch";
 describe("Returns correct path", () => {
   const search: PathFinder<ChessSquare> = new BreadthFirstSearch();
 
-  test.skip("Returns same start if it's the goal", () => {
+  test("Returns same start if it's the goal", () => {
     const start = new ChessSquare(0, 0);
     const goal = new ChessSquare(0, 0);
 
@@ -15,14 +15,14 @@ describe("Returns correct path", () => {
     expect(actual[0]).toBe(start);
   });
 
-  test.skip("Return correct squares in order", () => {
+  test("Return correct squares in order", () => {
     const start = new ChessSquare(0, 0);
     const goal = new ChessSquare(1, 2);
 
     const actual: ChessSquare[] = search.findPath(start, goal);
     expect(actual.length).toBe(2);
-    expect(actual[0]).toBe(start);
-    expect(actual[1]).toBe(goal);
+    expect(actual[0]).toEqual(start);
+    expect(actual[1]).toEqual(goal);
   });
 
   test("Returns path with multiple steps", () => {
@@ -34,7 +34,8 @@ describe("Returns correct path", () => {
       [1, 2],
       [0, 4]
     ].map((cord) => new ChessSquare(cord[0], cord[1]));
+
     const actual: ChessSquare[] = search.findPath(start, goal);
-    expect(true).toEqual(true);
+    expect(actual).toEqual(expected);
   });
 });
