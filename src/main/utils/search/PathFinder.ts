@@ -30,29 +30,32 @@ export default class PathFinder {
   visitAllSquares(start: ChessSquare): ChessSquare[] {
     let visited: HashSet<Node> = new HashSet();
     const startNode = new Node(start);
-    const stack: Node[] = [startNode];
-
-    while (stack.length > 0) {
-      const node = stack.pop() as Node;
-      visited.add(node);
-
-      if (node.equals(startNode)) {
-        const array = this.buildSquaresArray(node);
-        console.log(array.length);
-        if (array.length === 64) {
-          return array;
-        }
-
-        visited = new HashSet();
-        node.getMoves().forEach((move) => stack.push(move));
-      }
-
-      node.getMoves()
-        .filter((move) => !visited.contains(move))
-        .forEach((move) => stack.push(move));
+    const result = this.recursivelyVisitNodes(startNode, visited);
+    if (result !== null) {
+      return this.buildSquaresArray(result);
     }
 
-    throw Error("Knight should always find the path");
+    throw Error("Could not find solution, which is impossible");
+  }
+
+  private recursivelyVisitNodes(start: Node, visited: HashSet<Node>): Node | null {
+    if (start.length === 64) {
+      return start;
+    }
+
+    const moves = start.getMoves();
+
+    for (const move of moves) {
+      visited.add(move);
+      const result = this.recursivelyVisitNodes(move, visited);
+      if (result !== null) {
+        return result;
+      } else {
+        visited.remove(move);
+      }
+    }
+
+    return null;
   }
 
   private buildSquaresArray(node: Node): ChessSquare[] {
