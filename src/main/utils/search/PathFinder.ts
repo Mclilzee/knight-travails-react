@@ -16,12 +16,40 @@ export default class PathFinder {
       visited.add(node);
 
       if (node.equals(goalNode)) {
-        return this.buildSquaresArray(node);
+        return this.buildSquaresArray(node).reverse();
       }
 
       node.getMoves()
         .filter((move) => !visited.contains(move))
         .forEach((move) => queue.push(move));
+    }
+
+    throw Error("Knight should always find the path");
+  }
+
+  visitAllSquares(start: ChessSquare): ChessSquare[] {
+    let visited: HashSet<Node> = new HashSet();
+    const startNode = new Node(start);
+    const stack: Node[] = [startNode];
+
+    while (stack.length > 0) {
+      const node = stack.pop() as Node;
+      visited.add(node);
+
+      if (node.equals(startNode)) {
+        const array = this.buildSquaresArray(node);
+        console.log(array.length);
+        if (array.length === 64) {
+          return array;
+        }
+
+        visited = new HashSet();
+        node.getMoves().forEach((move) => stack.push(move));
+      }
+
+      node.getMoves()
+        .filter((move) => !visited.contains(move))
+        .forEach((move) => stack.push(move));
     }
 
     throw Error("Knight should always find the path");
@@ -36,6 +64,6 @@ export default class PathFinder {
       parent = parent.parent;
     }
 
-    return squares.reverse();
+    return squares;
   }
 }

@@ -3,13 +3,13 @@ import ChessSquare from "../../../main/utils/ChessSquare";
 import PathFinder from "../../../main/utils/search/PathFinder";
 
 describe("Returns correct path", () => {
-  const search: PathFinder = new PathFinder();
+  const finder: PathFinder = new PathFinder();
 
   test("Returns same start if it's the goal", () => {
     const start = new ChessSquare(0, 0);
     const goal = new ChessSquare(0, 0);
 
-    const actual: ChessSquare[] = search.findShortestPath(start, goal);
+    const actual: ChessSquare[] = finder.findShortestPath(start, goal);
     expect(actual.length).toBe(1);
     expect(actual[0]).toBe(start);
   });
@@ -18,7 +18,7 @@ describe("Returns correct path", () => {
     const start = new ChessSquare(0, 0);
     const goal = new ChessSquare(1, 2);
 
-    const actual: ChessSquare[] = search.findShortestPath(start, goal);
+    const actual: ChessSquare[] = finder.findShortestPath(start, goal);
     expect(actual.length).toBe(2);
     expect(actual[0]).toEqual(start);
     expect(actual[1]).toEqual(goal);
@@ -34,7 +34,7 @@ describe("Returns correct path", () => {
       [0, 4]
     ].map((cord) => new ChessSquare(cord[0], cord[1]));
 
-    const actual: ChessSquare[] = search.findShortestPath(start, goal);
+    const actual: ChessSquare[] = finder.findShortestPath(start, goal);
     expect(actual.length).toBe(3);
     expect(actual).toEqual(expected);
   });
@@ -49,7 +49,7 @@ describe("Returns correct path", () => {
       [1, 7]
     ].map((cord) => new ChessSquare(cord[0], cord[1]));
 
-    const actual: ChessSquare[] = search.findShortestPath(start, goal);
+    const actual: ChessSquare[] = finder.findShortestPath(start, goal);
     expect(actual.length).toBe(3);
     expect(actual).toEqual(expected);
   });
@@ -65,7 +65,7 @@ describe("Returns correct path", () => {
       [0, 1]
     ].map((cord) => new ChessSquare(cord[0], cord[1]));
 
-    const actual: ChessSquare[] = search.findShortestPath(start, goal);
+    const actual: ChessSquare[] = finder.findShortestPath(start, goal);
     expect(actual.length).toBe(4);
     expect(actual).toEqual(expected);
   });
@@ -83,9 +83,17 @@ describe("Returns correct path", () => {
       [6, 5],
       [7, 7]
     ].map((cord) => new ChessSquare(cord[0], cord[1]));
-    const actual: ChessSquare[] = search.findShortestPath(start, goal);
+    const actual: ChessSquare[] = finder.findShortestPath(start, goal);
 
     expect(actual.length).toBe(7);
     expect(actual).toEqual(expected);
+  });
+});
+
+describe("Visit all squares on the board", () => {
+  const finder = new PathFinder();
+  test("Visit all squares", () => {
+    const start = new ChessSquare(0, 0);
+    expect(finder.visitAllSquares(start).length).toBe(64);
   });
 });
