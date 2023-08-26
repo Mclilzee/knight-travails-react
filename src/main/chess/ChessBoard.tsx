@@ -28,7 +28,7 @@ export default function ChessBoard() {
       <div className="board">
         {cellsMap}
       </div >
-      <div className="columns-marks">
+      <div className="column-marks">
         {columnMarks}
       </div>
     </div >

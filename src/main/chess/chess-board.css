@@ -1,8 +1,39 @@
+.chess-board {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
 .chess-board > .board {
   display: grid;
   grid-template-columns: repeat(8, min(60px, 10vw, 10vh));
   grid-template-rows: repeat(8, min(60px, 10vw, 10vh));
-  border: solid 3px grey;
+  border: solid 1px grey;
+}
+
+.chess-board > .row-marks,
+.chess-board > .column-marks {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: min(2rem, 5vw, 5vh);
+}
+
+.chess-board > .row-marks {
+  grid-template-columns: min(60px, 10vw, 10vh);
+  grid-template-rows: repeat(8, min(60px, 10vw, 10vh));
+}
+
+
+.chess-board > .column-marks {
+  grid-template-columns: repeat(8, min(60px, 10vw, 10vh));
+  grid-template-rows: min(60px, 10vw, 10vh);
+  grid-column: 2;
+}
+
+.chess-board .mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cell {
@@ -47,3 +78,4 @@
 .cell.black > .crosshair {
   filter: invert();
 }
+

@@ -1,7 +1,7 @@
 export default function BoardMark({ mark }: Mark) {
 
   return (
-    <h1>{mark}</h1>
+    <div className="mark">{mark}</div>
   )
 
 }
