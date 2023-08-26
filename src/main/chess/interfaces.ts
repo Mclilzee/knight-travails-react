@@ -1,12 +1,7 @@
-import ChessSquare from "../utils/ChessSquare"
-
-export interface ChessBoardRow {
-  index: number,
-  cells: ChessBoardCell[],
-}
+import ChessSquare from "../utils/ChessSquare";
 
 export interface ChessBoardCell {
-  index: number,
+  id: string,
   square: ChessSquare,
   knight: boolean,
   selected: boolean,

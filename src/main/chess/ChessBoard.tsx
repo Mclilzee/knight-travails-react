@@ -1,37 +1,42 @@
 import ChessSquare from "../utils/ChessSquare";
 import { useState } from "react";
 import "./chess-board.css";
-import { ChessBoardRow, ChessBoardCell } from "./interfaces";
-import Row from "./Row";
+import Cell from "./Cell";
+import { ChessBoardCell } from "./interfaces";
 
 export default function ChessBoard() {
   const [board, _] = useState(createBoard());
 
-  const rowMap = board.map((row, i) => <Row row={row} key={i} />)
+  const cellsMap = board.map((cell) => <Cell
+    square={cell.square}
+    knight={cell.knight}
+    selected={cell.selected}
+    step={cell.step}
+    id={cell.id}
+    key={cell.id}
+  />)
+
   return (
     <div className="chess-board">
-      {rowMap}
+      {cellsMap}
     </div>
   )
 }
 
-function createBoard(): ChessBoardRow[] {
-  const chessBoard: ChessBoardRow[] = [];
+function createBoard(): ChessBoardCell[] {
+  const cells: ChessBoardCell[] = [];
 
   for (let i = 0; i < 8; i++) {
-    const chessRow: ChessBoardRow = { cells: [], index: i };
-    chessBoard.push(chessRow);
     for (let j = 0; j < 8; j++) {
-      const cell: ChessBoardCell = {
-        index: j,
+      cells.push({
+        id: i + "" + j,
         square: new ChessSquare(i, j),
         knight: false,
         selected: false,
         step: 0
-      }
-      chessRow.cells.push(cell);
+      })
     }
   }
 
-  return chessBoard;
+  return cells;
 }
