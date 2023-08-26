@@ -6,6 +6,7 @@ export default function Cell({ square, step, selected }: ChessBoardCell) {
   return (
     <div className={`cell ${getCellColor(square)} ${selected ? "selected" : ""}`} >
       {step > 0 ? step : ""}
+      64
     </div >
   )
 }
