@@ -1,4 +1,5 @@
 import { ChessBoardCell } from "./interfaces";
+import knightSvg from "../assets/knight.svg";
 
 export default function Cell({ square, step, selected, knight }: ChessBoardCell) {
 
