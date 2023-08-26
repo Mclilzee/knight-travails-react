@@ -1,7 +1,7 @@
-import ChessSquare from "../utils/ChessSquare";
 import { useState } from "react";
-import "./chess-board.css";
+import ChessSquare from "../utils/ChessSquare";
 import Cell from "./Cell";
+import "./chess-board.css";
 import { ChessBoardCell } from "./interfaces";
 
 export default function ChessBoard() {
