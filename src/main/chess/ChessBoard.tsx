@@ -31,7 +31,7 @@ function createBoard(): ChessBoardCell[] {
       cells.push({
         id: i + "" + j,
         square: new ChessSquare(i, j),
-        knight: false,
+        knight: true,
         selected: false,
         step: 0
       })
