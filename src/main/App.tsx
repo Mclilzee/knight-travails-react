@@ -1,6 +1,8 @@
+import ChessBoard from "./chess/ChessBoard"
+
 function App() {
   return (
-    <h1></h1>
+    <ChessBoard />
   )
 }
 
