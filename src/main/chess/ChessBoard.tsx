@@ -3,6 +3,7 @@ import ChessSquare from "../utils/ChessSquare";
 import Cell from "./Cell";
 import "./chess-board.css";
 import { ChessBoardCell } from "./interfaces";
+import BoardMark from "./BoardMark";
 
 export default function ChessBoard() {
   const [board, _] = useState(createBoard());
@@ -16,10 +17,21 @@ export default function ChessBoard() {
     key={cell.id}
   />)
 
+  const rowMarks = "87654321".split("").map((mark) => <BoardMark mark={mark} />)
+  const columnMarks = "ABCDEFGH".split("").map((mark) => <BoardMark mark={mark} />)
+
   return (
     <div className="chess-board">
-      {cellsMap}
-    </div>
+      <div className="row-marks">
+        {rowMarks}
+      </div>
+      <div className="board">
+        {cellsMap}
+      </div >
+      <div className="columns-marks">
+        {columnMarks}
+      </div>
+    </div >
   )
 }
 
