@@ -28,3 +28,11 @@
   filter: invert();
 }
 
+.cell > .crosshair {
+  display: block;
+  max-width: 70%;
+}
+
+.cell.black > .crosshair {
+  filter: invert();
+}
