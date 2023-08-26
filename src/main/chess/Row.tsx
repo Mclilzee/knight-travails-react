@@ -1,7 +1,16 @@
 import Cell from "./Cell";
+import ChessSquare from "../utils/ChessSquare";
 
-export default function Row() {
+export default function Row({ row }: ChessBoardRow) {
+
+  const cellsMap = row.map(cell => <Cell cell={cell} />);
   return (
-    <Cell />
+    <div className="row">
+      {cellsMap}
+    </div>
   )
+}
+
+interface ChessBoardRow {
+  row: ChessSquare[];
 }
