@@ -13,6 +13,16 @@
   text-align: center;
   background-color: rgba(255, 255, 255, 0.8);
   color: black;
+  cursor: crosshair;
+}
+
+.cell:hover {
+  background-image: url("../assets/crosshairs.svg");
+}
+
+.cell.black:hover {
+  filter: invert();
+  background-color: white;
 }
 
 .cell.black {
