@@ -1,11 +1,12 @@
 import ChessSquare from "../utils/ChessSquare";
 import { useState } from "react";
 import Row from "./Row";
+import "./chess-board.css";
 
 export default function ChessBoard() {
-  const [board, setBoard] = useState(createBoard());
+  const [board, _] = useState(createBoard());
 
-  const rowMap = board.map(row => <Row row={row} />)
+  const rowMap = board.map((row, i) => <Row row={row} key={i} />)
   return (
     <div className="chess-board">
       {rowMap}
