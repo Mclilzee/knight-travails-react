@@ -32,8 +32,8 @@ function createBoard(): ChessBoardCell[] {
         id: i + "" + j,
         square: new ChessSquare(i, j),
         knight: false,
-        selected: true,
-        step: 0
+        selected: false,
+        step: 5
       })
     }
   }
