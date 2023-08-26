@@ -2,23 +2,28 @@ import { useState } from "react";
 import ChessSquare from "../utils/ChessSquare";
 import Cell from "./Cell";
 import "./chess-board.css";
-import { ChessBoardCell } from "./interfaces";
+import { ChessData } from "./interfaces";
 import BoardMark from "./BoardMark";
 
 export default function ChessBoard() {
-  const [board, _] = useState(createBoard());
+  const [board, setBoard] = useState(createBoard());
+
+  function selectCell(id: string): void {
+    setBoard((cells) => {
+      return cells.map((cell) => {
+        return { ...cell, selected: cell.id === id ? true : false };
+      });
+    });
+  }
 
   const cellsMap = board.map((cell) => <Cell
-    square={cell.square}
-    knight={cell.knight}
-    selected={cell.selected}
-    step={cell.step}
-    id={cell.id}
+    data={cell}
+    clickHandler={selectCell}
     key={cell.id}
   />)
 
-  const rowMarks = "87654321".split("").map((mark) => <BoardMark mark={mark} />)
-  const columnMarks = "ABCDEFGH".split("").map((mark) => <BoardMark mark={mark} />)
+  const rowMarks = "87654321".split("").map((mark) => <BoardMark mark={mark} key={mark} />)
+  const columnMarks = "ABCDEFGH".split("").map((mark) => <BoardMark mark={mark} key={mark} />)
 
   return (
     <div className="chess-board">
@@ -35,8 +40,8 @@ export default function ChessBoard() {
   )
 }
 
-function createBoard(): ChessBoardCell[] {
-  const cells: ChessBoardCell[] = [];
+function createBoard(): ChessData[] {
+  const cells: ChessData[] = [];
 
   for (let i = 0; i < 8; i++) {
     for (let j = 0; j < 8; j++) {
