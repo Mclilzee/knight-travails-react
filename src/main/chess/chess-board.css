@@ -27,5 +27,6 @@
 }
 
 .cell.knight {
-
+  background-image: url("../assets/knight.svg");
+  background-repeat: no-repeat;
 }
