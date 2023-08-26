@@ -1,9 +1,9 @@
 import Cell from "./Cell";
-import ChessSquare from "../utils/ChessSquare";
+import { ChessBoardRow } from "./interfaces";
 
-export default function Row({ row }: ChessBoardRow) {
+export default function Row(props: { row: ChessBoardRow }) {
 
-  const cellsMap = row.map((cell, i) => <Cell cell={cell} key={i} />);
+  const cellsMap = props.row.cells.map((cell, i) => <Cell cell={cell} key={i} />);
   return (
     <div className="row">
       {cellsMap}
@@ -11,6 +11,4 @@ export default function Row({ row }: ChessBoardRow) {
   )
 }
 
-interface ChessBoardRow {
-  row: ChessSquare[];
-}
+

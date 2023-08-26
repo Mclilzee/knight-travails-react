@@ -1,7 +1,8 @@
 import ChessSquare from "../utils/ChessSquare";
 import { useState } from "react";
-import Row from "./Row";
 import "./chess-board.css";
+import { ChessBoardRow, ChessBoardCell } from "./interfaces";
+import Row from "./Row";
 
 export default function ChessBoard() {
   const [board, _] = useState(createBoard());
@@ -14,12 +15,21 @@ export default function ChessBoard() {
   )
 }
 
-function createBoard(): ChessSquare[][] {
-  const chessBoard: ChessSquare[][] = [];
+function createBoard(): ChessBoardRow[] {
+  const chessBoard: ChessBoardRow[] = [];
+
   for (let i = 0; i < 8; i++) {
-    chessBoard.push([]);
+    const chessRow: ChessBoardRow = { cells: [], index: i };
+    chessBoard.push(chessRow);
     for (let j = 0; j < 8; j++) {
-      chessBoard[i].push(new ChessSquare(i, j));
+      const cell: ChessBoardCell = {
+        index: j,
+        square: new ChessSquare(i, j),
+        knight: false,
+        selected: false,
+        step: 0
+      }
+      chessRow.cells.push(cell);
     }
   }
 

@@ -1,13 +1,9 @@
-import ChessSquare from "../utils/ChessSquare"
+import { ChessBoardCell } from "./interfaces"
 
-export default function Cell({ cell }: ChessBoardCell) {
+export default function Cell(props: { cell: ChessBoardCell }) {
   return (
     <div className="cell">
-      <h1>{cell.x} {cell.y}</h1>
+      <h1>{props.cell.square.x} {props.cell.square.y}</h1>
     </div>
   )
-}
-
-interface ChessBoardCell {
-  cell: ChessSquare
 }
