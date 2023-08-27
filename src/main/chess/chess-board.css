@@ -67,12 +67,17 @@
   max-width: 50%;
 }
 
+.cell > .knight.selected {
+  transform: scale(1.2);
+}
+
 .cell.black > .knight {
   filter: invert();
 }
 
 .cell:hover > .knight {
-  cursor: pointer;
+  cursor: move;
+  transform: scale(1.2);
 }
 
 .cell > .crosshair {

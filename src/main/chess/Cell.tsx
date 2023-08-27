@@ -43,7 +43,7 @@ export default function Cell({ data, selectCell: cellClickHandler, moveKnight }:
       onDragOver={dragOverHandler}
       onDrop={moveKnightHandler}
     >
-      {data.knight && <img className="knight" src={knightSvg} onDragStart={dragHandler} />}
+      {data.knight && <img className={`knight${data.selected ? " selected" : ""}`} src={knightSvg} onDragStart={dragHandler} />}
       {!data.knight && data.selected && <img className="crosshair" src={crossHairSvg} />}
       {!data.knight && step > 0 && step}
     </div >
