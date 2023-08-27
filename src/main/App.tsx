@@ -36,6 +36,13 @@ function App() {
     updateBoard(path, true);
   }
 
+  function visitAllCells() {
+    const start = findKnightPosition();
+    const path = pathFinder.visitAllSquares(start);
+    console.log(path);
+    updateBoard(path, false);
+  }
+
   function findKnightPosition(): ChessSquare {
     for (const cell of board) {
       if (cell.knight) {
@@ -79,7 +86,7 @@ function App() {
       <ChessBoard board={board} moveKnight={moveKnight} selectCell={selectCell} />
       <div className="controls-container">
         <button onClick={findShortestPath}>Find shortest path</button>
-        <button>Visit all cells</button>
+        <button onClick={visitAllCells}>Visit all cells</button>
       </div>
     </div>
   )
