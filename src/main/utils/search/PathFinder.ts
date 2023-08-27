@@ -5,7 +5,7 @@ import Node from "./Node";
 export default class PathFinder {
 
   findShortestPath(start: ChessSquare, goal: ChessSquare): ChessSquare[] {
-    const visited: TupleSet<Node> = new TupleSet();
+    const visited: TupleSet = new TupleSet();
     const startNode = new Node(start);
     const goalNode = new Node(goal);
     const queue: Node[] = [startNode];
