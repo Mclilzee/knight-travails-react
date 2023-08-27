@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ChessBoard from "./chess/ChessBoard"
-import { ChessBoardCell, ChessData } from "./chess/interfaces";
+import { ChessData } from "./chess/interfaces";
 import ChessSquare from "./utils/ChessSquare";
 import PathFinder from "./utils/search/PathFinder";
 
@@ -33,7 +33,7 @@ function App() {
     }
 
     const path = pathFinder.findShortestPath(start, goal)
-    updateBoard(path)
+    updateBoard(path, true);
   }
 
   function findKnightPosition(): ChessSquare {
@@ -56,9 +56,9 @@ function App() {
     return null;
   }
 
-  function updateBoard(path: ChessSquare[]) {
+  function updateBoard(path: ChessSquare[], selectedPersist: boolean) {
     const boardCopy: ChessData[] = board.map((cell) => {
-      return { ...cell }
+      return { ...cell, selected: selectedPersist ? cell.selected : false, step: 0 }
     });
 
     for (let i = 0; i < path.length; i++) {
