@@ -4,7 +4,6 @@ import crossHairSvg from "../assets/crosshairs.svg";
 import { DragEvent } from "react";
 
 export default function Cell({ data, selectCell, moveKnight }: ChessBoardCell) {
-
   function selectCellHandler(): void {
     if (data.knight) {
       return;
@@ -41,7 +40,7 @@ export default function Cell({ data, selectCell, moveKnight }: ChessBoardCell) {
     >
       {data.knight && <img className="knight" src={knightSvg} onDragStart={dragHandler} />}
       {!data.knight && data.selected && <img className="crosshair" src={crossHairSvg} />}
-      {!data.knight && data.step > 0 && data.step}
+      {!data.knight && data.step > 0 && <div className="step">{data.step}</div>}
     </div >
   )
 }
