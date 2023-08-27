@@ -6,7 +6,7 @@ import { ChessData } from "./interfaces";
 import BoardMark from "./BoardMark";
 
 export default function ChessBoard() {
-  const [board, setBoard] = useState(createBoard());
+  const [board, setBoard] = useState(() => createBoard());
 
   function selectCell(id: string): void {
     setBoard((cells) => {
