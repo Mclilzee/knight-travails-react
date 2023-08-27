@@ -2,6 +2,7 @@ import { useState } from "react";
 import ChessBoard from "./chess/ChessBoard"
 import { ChessData } from "./chess/interfaces";
 import PathFinder from "./utils/search/PathFinder";
+import TupleSet from "./utils/TupleSet";
 
 function App() {
   const [board, setBoard] = useState(() => createBoard());
@@ -38,7 +39,6 @@ function App() {
   function visitAllCells() {
     const start = findKnightPosition();
     const path = pathFinder.visitAllSquares(start);
-    console.log(path);
     updateBoard(path, false);
   }
 
@@ -68,9 +68,9 @@ function App() {
     });
 
     for (let i = 0; i < path.length; i++) {
-      const square = path[i];
+      const point = path[i];
       for (const cell of boardCopy) {
-        if (cell.point[0] === square[0] && cell.point[1] === square[1]) {
+        if (cell.point[0] === point[0] && cell.point[1] === point[1]) {
           cell.step = i;
           break;
         }
