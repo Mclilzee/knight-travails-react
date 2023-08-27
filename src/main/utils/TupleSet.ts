@@ -5,7 +5,6 @@ export default class TupleSet {
     if (!this.has(tuple)) {
       this.array.push(tuple);
     }
-
   }
 
   has(tuple: [number, number]): boolean {
@@ -20,5 +19,9 @@ export default class TupleSet {
 
   remove(tuple: [number, number]): void {
     this.array = this.array.filter((each) => each[0] !== tuple[0] || each[1] !== tuple[1]);
+  }
+
+  size(): number {
+    return this.array.length;
   }
 }
