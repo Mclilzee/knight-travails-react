@@ -92,7 +92,7 @@ describe("Returns correct path", () => {
 
 describe("Visit all squares on the board", () => {
   const finder = new PathFinder();
-  test.skip("Visit all squares", () => {
+  test("Visit all squares", () => {
     const start: [number, number] = [3, 4];
     expect(finder.visitAllSquares(start).length).toBe(64);
   });
@@ -116,7 +116,7 @@ describe("Visit all squares on the board", () => {
   });
 
   test("Visit each node exactly once", () => {
-    const start: [number, number] = [3, 4];
+    const start: [number, number] = [0, 7];
     const result = finder.visitAllSquares(start);
     const set = new TupleSet();
     for (const tuple of result) {
