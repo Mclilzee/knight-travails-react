@@ -90,14 +90,14 @@ describe("Returns correct path", () => {
   });
 });
 
-describe.skip("Visit all squares on the board", () => {
+describe("Visit all squares on the board", () => {
   const finder = new PathFinder();
   test.skip("Visit all squares", () => {
     const start: [number, number] = [3, 4];
     expect(finder.visitAllSquares(start).length).toBe(64);
   });
 
-  test.skip("Visit all from different starting position", () => {
+  test("Visit all from different starting position", () => {
     let start: [number, number] = [0, 0];
     expect(finder.visitAllSquares(start).length).toBe(64);
 
@@ -108,14 +108,14 @@ describe.skip("Visit all squares on the board", () => {
     expect(finder.visitAllSquares(start).length).toBe(64);
   });
 
-  test.skip("First node is the starting position", () => {
+  test("First node is the starting position", () => {
     const start: [number, number] = [2, 6];
     const result = finder.visitAllSquares(start);
     expect(result.length).toBe(64);
     expect(result[0]).toEqual(start);
   });
 
-  test.skip("Visit each node exactly once", () => {
+  test("Visit each node exactly once", () => {
     const start: [number, number] = [3, 4];
     const result = finder.visitAllSquares(start);
     const set = new TupleSet();
@@ -123,6 +123,6 @@ describe.skip("Visit all squares on the board", () => {
       set.add(tuple);
     }
 
-    expect(set.size).toBe(64);
+    expect(set.size()).toBe(64);
   });
 });
