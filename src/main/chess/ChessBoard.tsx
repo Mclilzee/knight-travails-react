@@ -48,7 +48,7 @@ function createBoard(): ChessData[] {
       cells.push({
         id: i + "" + j,
         square: new ChessSquare(i, j),
-        knight: false,
+        knight: i === 3 && j === 4 ? true : false,
         selected: false,
         step: 0
       })
