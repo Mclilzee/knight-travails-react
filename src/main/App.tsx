@@ -23,7 +23,13 @@ function App() {
   }
 
   return (
-    <ChessBoard board={board} moveKnight={moveKnight} selectCell={selectCell} />
+    <div className="root">
+      <ChessBoard board={board} moveKnight={moveKnight} selectCell={selectCell} />
+      <div className="controls-container">
+        <button>Find shortest path</button>
+        <button>Visit all cells</button>
+      </div>
+    </div>
   )
 }
 

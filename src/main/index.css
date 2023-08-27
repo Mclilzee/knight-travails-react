@@ -14,11 +14,22 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.root {
+  display: grid;
+  gap: 20px;
+}
+
+.controls-container {
+  display: flex;
+  gap: 20px;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -30,25 +41,23 @@ body {
   padding-top: 20px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 button {
+  flex: 1;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: min(1em, 5vw, 4vh);
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -64,5 +73,25 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .controls-container {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-height: 460px) {
+  .root {
+    grid-template-columns: auto auto;
+  }
+
+  .controls-container {
+    flex-direction: column;
+  }
+
+  button {
+    font-size: 2vw;
   }
 }
