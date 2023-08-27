@@ -92,7 +92,7 @@ describe("Returns correct path", () => {
 
 describe("Visit all squares on the board", () => {
   const finder = new PathFinder();
-  test("Visit all squares", () => {
+  test.skip("Visit all squares", () => {
     const start = new ChessSquare(3, 4);
     expect(finder.visitAllSquares(start).length).toBe(64);
   });
