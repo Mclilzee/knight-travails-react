@@ -1,10 +1,9 @@
-import ChessSquare from "../ChessSquare";
 import TupleSet from "../TupleSet";
 import Node from "./Node";
 
 export default class PathFinder {
 
-  findShortestPath(start: ChessSquare, goal: ChessSquare): ChessSquare[] {
+  findShortestPath(start: [number, number], goal: [number, number]): ChessSquare[] {
     const visited: TupleSet = new TupleSet();
     const startNode = new Node(start);
     const goalNode = new Node(goal);
