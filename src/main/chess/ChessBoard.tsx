@@ -16,9 +16,18 @@ export default function ChessBoard() {
     });
   }
 
+  function moveKnight(id: string): void {
+    setBoard((cells) => {
+      return cells.map((cell) => {
+        return id === cell.id ? { ...cell, selected: false, knight: true } : { ...cell, knight: false };
+      });
+    });
+  }
+
   const cellsMap = board.map((cell) => <Cell
     data={cell}
     clickHandler={selectCell}
+    moveKnight={moveKnight}
     key={cell.id}
   />)
 

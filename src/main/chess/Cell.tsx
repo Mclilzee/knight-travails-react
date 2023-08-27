@@ -3,23 +3,32 @@ import knightSvg from "../assets/knight.svg";
 import crossHairSvg from "../assets/crosshairs.svg";
 import { DragEvent } from "react";
 
-export default function Cell({ data, clickHandler }: ChessBoardCell) {
+export default function Cell({ data, clickHandler, moveKnight }: ChessBoardCell) {
 
   function handleClick(): void {
+    if (data.knight) {
+      return;
+    }
+
     clickHandler(data.id);
+  }
+
+  function dragHandler(e: DragEvent) {
+    e.dataTransfer.setData("knight", "");
   }
 
   function dragOverHandler(e: DragEvent): void {
     if (data.knight) {
       return;
+    } else if (e.dataTransfer.types.includes("knight")) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "move";
     }
-
-    e.preventDefault();
-    e.dataTransfer.dropEffect = "move";
   }
 
   function moveKnightHandler(e: DragEvent) {
-    if (e.currentTarget.classList.contains("knight")) {
+    if (e.dataTransfer.types.includes("knight")) {
+      moveKnight(data.id);
     }
   }
 
@@ -28,9 +37,9 @@ export default function Cell({ data, clickHandler }: ChessBoardCell) {
       `cell ${(data.square.x + data.square.y) % 2 === 0 ? "white" : "black"} ${data.knight ? "knight" : ""}`}
       onClick={handleClick}
       onDragOver={dragOverHandler}
-      onDragEnd={moveKnightHandler}
+      onDrop={moveKnightHandler}
     >
-      {data.knight && <img className="knight" src={knightSvg} />}
+      {data.knight && <img className="knight" src={knightSvg} onDragStart={dragHandler} />}
       {!data.knight && data.selected && <img className="crosshair" src={crossHairSvg} />}
       {!data.knight && !data.selected && data.step > 0 && data.step}
     </div >
