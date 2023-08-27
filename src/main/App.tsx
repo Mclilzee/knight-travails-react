@@ -2,7 +2,6 @@ import { useState } from "react";
 import ChessBoard from "./chess/ChessBoard"
 import { ChessData } from "./chess/interfaces";
 import PathFinder from "./utils/search/PathFinder";
-import TupleSet from "./utils/TupleSet";
 
 function App() {
   const [board, setBoard] = useState(() => createBoard());
