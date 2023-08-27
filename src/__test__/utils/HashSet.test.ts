@@ -1,10 +1,10 @@
 import { describe, expect, test } from "vitest";
-import HashSet from "../../main/utils/HashSet";
+import TupleSet from "../../main/utils/HashSet";
 import Hashable from "../../main/utils/Hashable";
 
 describe("Add elements to the set", () => {
   test("Adds element to the set", () => {
-    const set: HashSet<MockHashable> = new HashSet();
+    const set: TupleSet<MockHashable> = new TupleSet();
     const mockObject = new MockHashable(0);
 
     expect(set.length()).toBe(0);
@@ -14,7 +14,7 @@ describe("Add elements to the set", () => {
   });
 
   test("Add more than one element returns the correct length", () => {
-    const set: HashSet<MockHashable> = new HashSet();
+    const set: TupleSet<MockHashable> = new TupleSet();
     const mockObject = new MockHashable(0);
     const mockObject2 = new MockHashable(1);
     const mockObject3 = new MockHashable(1);
@@ -36,7 +36,7 @@ describe("Add elements to the set", () => {
   });
 
   test("Does not add if element already exist", () => {
-    const set: HashSet<MockHashable> = new HashSet();
+    const set: TupleSet<MockHashable> = new TupleSet();
     const mockObject = new MockHashable(0, true);
     const mockObject2 = new MockHashable(0, true);
 
@@ -50,7 +50,7 @@ describe("Add elements to the set", () => {
   });
 
   test("Does add if elements has same hash but are not equal", () => {
-    const set: HashSet<MockHashable> = new HashSet();
+    const set: TupleSet<MockHashable> = new TupleSet();
     const mockObject = new MockHashable(0);
     const mockObject2 = new MockHashable(0);
 
@@ -66,14 +66,14 @@ describe("Add elements to the set", () => {
 
 describe("Check if set contains an element", () => {
   test("Set does not contain element if it's empty", () => {
-    const set: HashSet<MockHashable> = new HashSet();
+    const set: TupleSet<MockHashable> = new TupleSet();
     const mockObject = new MockHashable(0);
 
     expect(set.contains(mockObject)).toBe(false);
   });
 
   test("Set does contain element that is added", () => {
-    const set: HashSet<MockHashable> = new HashSet();
+    const set: TupleSet<MockHashable> = new TupleSet();
     const mockObject = new MockHashable(0);
 
     set.add(mockObject);
@@ -81,7 +81,7 @@ describe("Check if set contains an element", () => {
   });
 
   test("Set does not contain element that has same hash value but are not equal", () => {
-    const set: HashSet<MockHashable> = new HashSet();
+    const set: TupleSet<MockHashable> = new TupleSet();
     const mockObject = new MockHashable(0);
     const mockObject2 = new MockHashable(0);
 
@@ -92,7 +92,7 @@ describe("Check if set contains an element", () => {
 
 describe("Set removes the correct elements", () => {
   test("Removes does not error on empty set", () => {
-    const set: HashSet<MockHashable> = new HashSet();
+    const set: TupleSet<MockHashable> = new TupleSet();
     const mockObject = new MockHashable(0);
 
     expect(set.length()).toBe(0);
@@ -103,7 +103,7 @@ describe("Set removes the correct elements", () => {
   });
 
   test("Removes the correct element", () => {
-    const set: HashSet<MockHashable> = new HashSet();
+    const set: TupleSet<MockHashable> = new TupleSet();
     const mockObject = new MockHashable(0);
 
     expect(set.length()).toBe(0);
@@ -118,7 +118,7 @@ describe("Set removes the correct elements", () => {
   })
 
   test("Does not remove element that has same hash if not equal", () => {
-    const set: HashSet<MockHashable> = new HashSet();
+    const set: TupleSet<MockHashable> = new TupleSet();
     const mockObject = new MockHashable(0);
     const mockObject2 = new MockHashable(0);
 

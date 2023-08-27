@@ -1,11 +1,11 @@
 import ChessSquare from "../ChessSquare";
-import HashSet from "../HashSet";
+import TupleSet from "../HashSet";
 import Node from "./Node";
 
 export default class PathFinder {
 
   findShortestPath(start: ChessSquare, goal: ChessSquare): ChessSquare[] {
-    const visited: HashSet<Node> = new HashSet();
+    const visited: TupleSet<Node> = new TupleSet();
     const startNode = new Node(start);
     const goalNode = new Node(goal);
     const queue: Node[] = [startNode];
@@ -28,7 +28,7 @@ export default class PathFinder {
   }
 
   visitAllSquares(start: ChessSquare): ChessSquare[] {
-    let visited: HashSet<Node> = new HashSet();
+    let visited: TupleSet<Node> = new TupleSet();
     const startNode = new Node(start);
     const result = this.recursivelyVisitNodes(startNode, visited);
     if (result !== null) {
@@ -38,7 +38,7 @@ export default class PathFinder {
     throw Error("Could not find solution, which is impossible");
   }
 
-  private recursivelyVisitNodes(start: Node, visited: HashSet<Node>): Node | null {
+  private recursivelyVisitNodes(start: Node, visited: TupleSet<Node>): Node | null {
     if (start.length === 64) {
       return start;
     }
