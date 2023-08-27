@@ -4,7 +4,7 @@ import crossHairSvg from "../assets/crosshairs.svg";
 import { useState, useEffect } from "react";
 import { DragEvent } from "react";
 
-export default function Cell({ data, selectCell, moveKnight }: ChessBoardCell) {
+export default function Cell({ data, selectCell: cellClickHandler, moveKnight }: ChessBoardCell) {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
@@ -13,12 +13,8 @@ export default function Cell({ data, selectCell, moveKnight }: ChessBoardCell) {
     return () => clearTimeout(timeOut);
   }, [data.step]);
 
-  function selectCellHandler(): void {
-    if (data.knight) {
-      return;
-    }
-
-    selectCell(data.id);
+  function cellClickhandler(): void {
+    cellClickHandler(data.id);
   }
 
   function dragHandler(e: DragEvent) {
@@ -43,7 +39,7 @@ export default function Cell({ data, selectCell, moveKnight }: ChessBoardCell) {
   return (
     <div className={
       `cell ${(data.point[0] + data.point[1]) % 2 === 0 ? "white" : "black"} ${data.knight ? "knight" : ""}`}
-      onClick={selectCellHandler}
+      onClick={cellClickhandler}
       onDragOver={dragOverHandler}
       onDrop={moveKnightHandler}
     >

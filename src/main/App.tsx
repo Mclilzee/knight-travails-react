@@ -7,18 +7,34 @@ function App() {
   const [board, setBoard] = useState(() => createBoard());
   const [pathFinder] = useState(() => new PathFinder());
 
-  function selectCell(id: string): void {
-    setBoard((board) => {
-      return board.map((cell) => {
-        return { ...cell, selected: cell.id === id ? true : false };
-      });
-    });
+  function handleCellClick(id: string): void {
+    let isKnightSelected = false;
+    for (const cell of board) {
+      if (cell.knight && cell.selected) {
+        isKnightSelected = true;
+        break;
+      }
+    }
+
+    if (isKnightSelected) {
+      moveKnight(id);
+    } else {
+      selectCell(id);
+    }
   }
 
   function moveKnight(id: string): void {
     setBoard((board) => {
       return board.map((cell) => {
-        return id === cell.id ? { ...cell, selected: false, knight: true } : { ...cell, knight: false };
+        return { ...cell, selected: false, knight: id === cell.id ? true : false };
+      });
+    });
+  }
+
+  function selectCell(id: string): void {
+    setBoard((board) => {
+      return board.map((cell) => {
+        return { ...cell, selected: cell.id === id ? true : false };
       });
     });
   }
@@ -81,7 +97,7 @@ function App() {
 
   return (
     <div className="root">
-      <ChessBoard board={board} moveKnight={moveKnight} selectCell={selectCell} />
+      <ChessBoard board={board} moveKnight={moveKnight} selectCell={handleCellClick} />
       <div className="controls-container">
         <button onClick={findShortestPath}>Find shortest path</button>
         <button onClick={visitAllCells}>Visit all cells</button>
