@@ -1,13 +1,10 @@
-import ChessSquare from "../ChessSquare";
-import Hashable from "../Hashable";
-
-export default class Node implements Hashable<Node> {
-  readonly chessSquare: ChessSquare;
+export default class Node {
+  readonly location: [number, number];
   readonly parent: Node | null = null;
   readonly length: number;
 
-  constructor(chessSquare: ChessSquare, parent?: Node) {
-    this.chessSquare = chessSquare;
+  constructor(location: [number, number], parent?: Node) {
+    this.location = location;
 
     if (parent !== undefined) {
       this.parent = parent;
@@ -17,17 +14,25 @@ export default class Node implements Hashable<Node> {
     }
   }
 
-  hash(): number {
-    return this.chessSquare.x * 2 + this.chessSquare.y * 3;
-  }
-
-  equals(other: Node): boolean {
-    return other.chessSquare.x === this.chessSquare.x &&
-      other.chessSquare.y === this.chessSquare.y;
-  }
-
   getMoves(): Node[] {
-    return this.chessSquare.getKnightMoves()
-      .map((square) => new Node(square, this));
+    const moves: [number, number][] = [
+      [this.location[0] - 1, this.location[1] - 2],
+      [this.location[0] - 2, this.location[1] - 1],
+      [this.location[0] - 2, this.location[1] + 1],
+      [this.location[0] - 1, this.location[1] + 2],
+      [this.location[0] + 1, this.location[1] + 2],
+      [this.location[0] + 2, this.location[1] + 1],
+      [this.location[0] + 2, this.location[1] - 1],
+      [this.location[0] + 1, this.location[1] - 2]
+    ]
+
+    const validMoves: Node[] = [];
+    for (const move of moves) {
+      if (move[0] <= 7 && move[0] >= 0 && move[1] <= 8 && move[1] >= 0) {
+        validMoves.push(new Node(move, this));
+      }
+    }
+
+    return validMoves;
   }
 }

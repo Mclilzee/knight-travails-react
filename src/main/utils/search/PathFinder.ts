@@ -1,5 +1,5 @@
 import ChessSquare from "../ChessSquare";
-import TupleSet from "../HashSet";
+import TupleSet from "../TupleSet";
 import Node from "./Node";
 
 export default class PathFinder {
