@@ -47,7 +47,7 @@
   cursor: crosshair;
 }
 
-.cell:hover {
+.cell:not( > .knight):hover {
   background-image: url("../assets/crosshairs.svg");
 }
 
@@ -68,6 +68,10 @@
 
 .cell.black > .knight {
   filter: invert();
+}
+
+.cell:hover > .knight {
+  cursor: pointer;
 }
 
 .cell > .crosshair {
