@@ -29,14 +29,14 @@ describe("Getting adjacent moves", () => {
     const node = new Node(square);
 
     const expected: Node[] = [
-      [2, 2],
       [3, 1],
-      [5, 1],
-      [6, 2],
-      [6, 4],
+      [2, 2],
       [2, 4],
       [3, 5],
-      [5, 5]
+      [5, 5],
+      [6, 4],
+      [6, 2],
+      [5, 1]
     ].map(cord => {
       const square = new ChessSquare(cord[0], cord[1]);
       return new Node(square, node);

@@ -41,14 +41,14 @@ describe("Knight moves", () => {
   test("Knight moves are correct", () => {
     const square = new ChessSquare(4, 3);
     const expected: ChessSquare[] = [
-      [2, 2],
       [3, 1],
-      [5, 1],
-      [6, 2],
-      [6, 4],
+      [2, 2],
       [2, 4],
       [3, 5],
-      [5, 5]
+      [5, 5],
+      [6, 4],
+      [6, 2],
+      [5, 1]
     ].map((cords) => new ChessSquare(cords[0], cords[1]));
 
     const actual = square.getKnightMoves();
@@ -58,8 +58,8 @@ describe("Knight moves", () => {
   test("Knight moves takes corners into considration", () => {
     const square = new ChessSquare(0, 0);
     const expected: ChessSquare[] = [
-      [2, 1],
-      [1, 2]
+      [1, 2],
+      [2, 1]
     ].map((cords) => new ChessSquare(cords[0], cords[1]));
 
     const actual = square.getKnightMoves();
@@ -69,8 +69,8 @@ describe("Knight moves", () => {
   test("Knight moves from left upper corner", () => {
     const square = new ChessSquare(0, 0);
     const expected: ChessSquare[] = [
-      [2, 1],
-      [1, 2]
+      [1, 2],
+      [2, 1]
     ].map((cords) => new ChessSquare(cords[0], cords[1]));
 
     const actual = square.getKnightMoves();
@@ -80,8 +80,8 @@ describe("Knight moves", () => {
   test("Knight moves from right upper corner", () => {
     const square = new ChessSquare(0, 7);
     const expected: ChessSquare[] = [
-      [1, 5],
-      [2, 6]
+      [2, 6],
+      [1, 5]
     ].map((cords) => new ChessSquare(cords[0], cords[1]));
 
     const actual = square.getKnightMoves();
@@ -102,8 +102,8 @@ describe("Knight moves", () => {
   test("Knight moves from right bottom corner", () => {
     const square = new ChessSquare(7, 7);
     const expected: ChessSquare[] = [
-      [5, 6],
-      [6, 5]
+      [6, 5],
+      [5, 6]
     ].map((cords) => new ChessSquare(cords[0], cords[1]));
 
     const actual = square.getKnightMoves();
