@@ -28,7 +28,7 @@ export default class Node {
 
     const validMoves: Node[] = [];
     for (const move of moves) {
-      if (move[0] <= 7 && move[0] >= 0 && move[1] <= 8 && move[1] >= 0) {
+      if (move[0] <= 7 && move[0] >= 0 && move[1] <= 7 && move[1] >= 0) {
         validMoves.push(new Node(move, this));
       }
     }
