@@ -1,5 +1,3 @@
-import ChessSquare from "../utils/ChessSquare";
-
 export interface Board {
   board: ChessData[],
   selectCell: (id: string) => void,
@@ -14,7 +12,7 @@ export interface ChessBoardCell {
 
 export interface ChessData {
   id: string,
-  square: ChessSquare,
+  point: [number, number],
   knight: boolean,
   selected: boolean,
   step: number

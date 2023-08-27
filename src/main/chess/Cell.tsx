@@ -34,7 +34,7 @@ export default function Cell({ data, selectCell, moveKnight }: ChessBoardCell) {
 
   return (
     <div className={
-      `cell ${(data.square.x + data.square.y) % 2 === 0 ? "white" : "black"} ${data.knight ? "knight" : ""}`}
+      `cell ${(data.point[0] + data.point[1]) % 2 === 0 ? "white" : "black"} ${data.knight ? "knight" : ""}`}
       onClick={selectCellHandler}
       onDragOver={dragOverHandler}
       onDrop={moveKnightHandler}

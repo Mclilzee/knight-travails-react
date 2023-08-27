@@ -1,7 +1,6 @@
 import { useState } from "react";
 import ChessBoard from "./chess/ChessBoard"
 import { ChessData } from "./chess/interfaces";
-import ChessSquare from "./utils/ChessSquare";
 import PathFinder from "./utils/search/PathFinder";
 
 function App() {
@@ -43,27 +42,27 @@ function App() {
     updateBoard(path, false);
   }
 
-  function findKnightPosition(): ChessSquare {
+  function findKnightPosition(): [number, number] {
     for (const cell of board) {
       if (cell.knight) {
-        return cell.square;
+        return cell.point;
       }
     }
 
     throw new Error("Could not find the knight position, which is impossible");
   }
 
-  function findGoalDestination(): ChessSquare | null {
+  function findGoalDestination(): [number, number] | null {
     for (const cell of board) {
       if (cell.selected) {
-        return cell.square;
+        return cell.point;
       }
     }
 
     return null;
   }
 
-  function updateBoard(path: ChessSquare[], selectedPersist: boolean) {
+  function updateBoard(path: [number, number][], selectedPersist: boolean) {
     const boardCopy: ChessData[] = board.map((cell) => {
       return { ...cell, selected: selectedPersist ? cell.selected : false, step: 0 }
     });
@@ -71,7 +70,7 @@ function App() {
     for (let i = 0; i < path.length; i++) {
       const square = path[i];
       for (const cell of boardCopy) {
-        if (cell.square.x === square.x && cell.square.y === square.y) {
+        if (cell.point[0] === square[0] && cell.point[1] === square[1]) {
           cell.step = i;
           break;
         }
@@ -99,7 +98,7 @@ function createBoard(): ChessData[] {
     for (let j = 0; j < 8; j++) {
       cells.push({
         id: i + "" + j,
-        square: new ChessSquare(i, j),
+        point: [i, j],
         knight: i === 3 && j === 4 ? true : false,
         selected: false,
         step: 0
