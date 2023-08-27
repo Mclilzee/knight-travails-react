@@ -60,8 +60,8 @@ describe("Returns correct path", () => {
 
     const expected: [number, number][] = [
       [0, 0],
-      [2, 1],
-      [1, 3],
+      [1, 2],
+      [2, 0],
       [0, 1]
     ];
 
@@ -76,11 +76,11 @@ describe("Returns correct path", () => {
 
     const expected: [number, number][] = [
       [0, 0],
-      [2, 1],
-      [4, 0],
-      [6, 1],
-      [5, 3],
-      [6, 5],
+      [1, 2],
+      [0, 4],
+      [1, 6],
+      [3, 7],
+      [5, 8],
       [7, 7]
     ];
 
