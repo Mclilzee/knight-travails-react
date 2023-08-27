@@ -13,14 +13,14 @@ export default class ChessSquare {
 
   getKnightMoves(): ChessSquare[] {
     const moves = [
-      [this.x - 2, this.y - 1],
       [this.x - 1, this.y - 2],
-      [this.x + 1, this.y - 2],
-      [this.x + 2, this.y - 1],
-      [this.x + 2, this.y + 1],
+      [this.x - 2, this.y - 1],
       [this.x - 2, this.y + 1],
       [this.x - 1, this.y + 2],
-      [this.x + 1, this.y + 2]
+      [this.x + 1, this.y + 2],
+      [this.x + 2, this.y + 1],
+      [this.x + 2, this.y - 1],
+      [this.x + 1, this.y - 2]
     ]
 
     const legalMoves: ChessSquare[] = [];
