@@ -5,7 +5,6 @@ import crossHairSvg from "../assets/crosshairs.svg";
 export default function Cell({ data, clickHandler }: ChessBoardCell) {
 
   function handleClick() {
-    console.log("clicked");
     clickHandler(data.id);
   }
 
