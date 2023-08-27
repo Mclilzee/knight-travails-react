@@ -26,7 +26,7 @@ export default function ChessBoard() {
 
   const cellsMap = board.map((cell) => <Cell
     data={cell}
-    clickHandler={selectCell}
+    selectCell={selectCell}
     moveKnight={moveKnight}
     key={cell.id}
   />)

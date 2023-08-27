@@ -2,7 +2,7 @@ import ChessSquare from "../utils/ChessSquare";
 
 export interface ChessBoardCell {
   data: ChessData,
-  clickHandler: (id: string) => void,
+  selectCell: (id: string) => void,
   moveKnight: (id: string) => void,
 }
 
