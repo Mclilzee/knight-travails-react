@@ -43,18 +43,16 @@ export default class PathFinder {
       return start;
     }
 
-    const moves = start.getMoves();
-
+    visited.add(start);
+    const moves = start.getMoves().filter((move) => !visited.contains(move));
     for (const move of moves) {
-      visited.add(move);
-      const result = this.recursivelyVisitNodes(move, visited);
+      const result = this.recursivelyVisitNodes(move, visited)
       if (result !== null) {
         return result;
-      } else {
-        visited.remove(move);
       }
     }
 
+    visited.remove(start);
     return null;
   }
 
