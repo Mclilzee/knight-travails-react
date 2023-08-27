@@ -97,7 +97,7 @@ describe("Visit all squares on the board", () => {
     expect(finder.visitAllSquares(start).length).toBe(64);
   });
 
-  test.skip("Visit all from different starting position", () => {
+  test("Visit all from different starting position", () => {
     let start: [number, number] = [0, 0];
     expect(finder.visitAllSquares(start).length).toBe(64);
 
@@ -108,14 +108,14 @@ describe("Visit all squares on the board", () => {
     expect(finder.visitAllSquares(start).length).toBe(64);
   });
 
-  test.skip("First node is the starting position", () => {
+  test("First node is the starting position", () => {
     const start: [number, number] = [2, 6];
     const result = finder.visitAllSquares(start);
     expect(result.length).toBe(64);
     expect(result[0]).toEqual(start);
   });
 
-  test.skip("Visit each node exactly once", () => {
+  test("Visit each node exactly once", () => {
     const start: [number, number] = [0, 7];
     const result = finder.visitAllSquares(start);
     const set = new TupleSet();
