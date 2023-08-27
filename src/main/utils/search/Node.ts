@@ -28,11 +28,15 @@ export default class Node {
 
     const validMoves: Node[] = [];
     for (const move of moves) {
-      if (move[0] <= 7 && move[0] >= 0 && move[1] <= 7 && move[1] >= 0) {
+      if (this.isValidMove(move)) {
         validMoves.push(new Node(move, this));
       }
     }
 
     return validMoves;
+  }
+
+  private isValidMove(move: [number, number]): boolean {
+    return move[0] <= 7 && move[0] >= 0 && move[1] <= 7 && move[1] >= 0;
   }
 }

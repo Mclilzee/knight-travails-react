@@ -42,7 +42,10 @@ export default class PathFinder {
     }
 
     visited.add(start.location);
-    const moves = start.getMoves().filter((move) => !visited.has(move.location));
+    const moves = start.getMoves()
+      .filter((move) => !visited.has(move.location))
+      .sort((a, b) => this.countAdjacentMoves(a, visited) - this.countAdjacentMoves(b, visited));
+
     for (const move of moves) {
       const result = this.recursivelyVisitNodes(move, visited)
       if (result !== null) {
@@ -52,6 +55,10 @@ export default class PathFinder {
 
     visited.remove(start.location);
     return null;
+  }
+
+  private countAdjacentMoves(node: Node, visited: TupleSet): number {
+    return node.getMoves().filter((move) => !visited.has(move.location)).length;
   }
 
   private buildSquaresArray(node: Node): [number, number][] {
