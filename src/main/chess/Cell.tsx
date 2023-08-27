@@ -13,7 +13,7 @@ export default function Cell({ data, selectCell: cellClickHandler, moveKnight }:
     return () => clearTimeout(timeOut);
   }, [data.step]);
 
-  function cellClickhandler(): void {
+  function handleClick(): void {
     cellClickHandler(data.id);
   }
 
@@ -39,7 +39,7 @@ export default function Cell({ data, selectCell: cellClickHandler, moveKnight }:
   return (
     <div className={
       `cell ${(data.point[0] + data.point[1]) % 2 === 0 ? "white" : "black"} ${data.knight ? "knight" : ""}`}
-      onClick={cellClickhandler}
+      onClick={handleClick}
       onDragOver={dragOverHandler}
       onDrop={moveKnightHandler}
     >
