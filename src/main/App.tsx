@@ -1,10 +1,12 @@
 import { useState } from "react";
 import ChessBoard from "./chess/ChessBoard"
-import { ChessData } from "./chess/interfaces";
+import { ChessBoardCell, ChessData } from "./chess/interfaces";
 import ChessSquare from "./utils/ChessSquare";
+import PathFinder from "./utils/search/PathFinder";
 
 function App() {
   const [board, setBoard] = useState(() => createBoard());
+  const [pathFinder] = useState(() => new PathFinder());
 
   function selectCell(id: string): void {
     setBoard((board) => {
@@ -22,11 +24,61 @@ function App() {
     });
   }
 
+  function findShortestPath() {
+    const start = findKnightPosition();
+    const goal = findGoalDestination();
+
+    if (goal == null) {
+      return;
+    }
+
+    const path = pathFinder.findShortestPath(start, goal)
+    updateBoard(path)
+  }
+
+  function findKnightPosition(): ChessSquare {
+    for (const cell of board) {
+      if (cell.knight) {
+        return cell.square;
+      }
+    }
+
+    throw new Error("Could not find the knight position, which is impossible");
+  }
+
+  function findGoalDestination(): ChessSquare | null {
+    for (const cell of board) {
+      if (cell.selected) {
+        return cell.square;
+      }
+    }
+
+    return null;
+  }
+
+  function updateBoard(path: ChessSquare[]) {
+    const boardCopy: ChessData[] = board.map((cell) => {
+      return { ...cell }
+    });
+
+    for (let i = 0; i < path.length; i++) {
+      const square = path[i];
+      for (const cell of boardCopy) {
+        if (cell.square.x === square.x && cell.square.y === square.y) {
+          cell.step = i;
+          break;
+        }
+      }
+    }
+
+    setBoard(boardCopy);
+  }
+
   return (
     <div className="root">
       <ChessBoard board={board} moveKnight={moveKnight} selectCell={selectCell} />
       <div className="controls-container">
-        <button>Find shortest path</button>
+        <button onClick={findShortestPath}>Find shortest path</button>
         <button>Visit all cells</button>
       </div>
     </div>
