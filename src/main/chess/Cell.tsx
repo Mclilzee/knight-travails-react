@@ -11,7 +11,7 @@ export default function Cell({ data, clickHandler }: ChessBoardCell) {
 
   return (
     <div className={
-      `cell ${(data.square.x + data.square.y) % 2 === 0 ? "white" : "black"}`}
+      `cell ${(data.square.x + data.square.y) % 2 === 0 ? "white" : "black"} ${data.knight ? "knight" : ""}`}
       onClick={handleClick}
     >
       {data.knight && <img className="knight" src={knightSvg} draggable={true} />}

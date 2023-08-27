@@ -47,11 +47,11 @@
   cursor: crosshair;
 }
 
-.cell:not( > .knight):hover {
+.cell:not(.knight):hover {
   background-image: url("../assets/crosshairs.svg");
 }
 
-.cell.black:hover {
+.cell:not(.knight).black:hover {
   filter: invert();
   background-color: white;
 }
