@@ -46,12 +46,10 @@ export default class PathFinder {
     visited.add(start);
     const moves = start.getMoves().filter((move) => !visited.contains(move));
     for (const move of moves) {
-      visited.add(move);
       const result = this.recursivelyVisitNodes(move, visited)
       if (result !== null) {
         return result;
       }
-      visited.remove(move);
     }
 
     visited.remove(start);
