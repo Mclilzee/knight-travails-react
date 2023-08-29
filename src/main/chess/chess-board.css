@@ -88,8 +88,3 @@
 .cell.black > .crosshair {
   filter: invert();
 }
-
-.cell > .step {
-  display: none;
-  transition: all 2s;
-}
